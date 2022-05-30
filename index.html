@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A browser-based ASCII art editor for Ayashii World-type bulletin boards.">
+  <title>Mattari AA</title>
+  <link href="./css/main.css" rel="stylesheet" type="text/css">
+  <link href="./css/honten.css" rel="alternate stylesheet" type="text/css" title="Honten">
+  <link href="./css/nazo.css" rel="alternate stylesheet" type="text/css" title="Nazo">
+  <link href="./css/remix.css" rel="alternate stylesheet" type="text/css" title="Remix">
+  <link href="./css/shiba.css" rel="alternate stylesheet" type="text/css" title="Shiba">
+  <script src="./script/styleswitch.js"></script>
+  <script src="./script/insert.js"></script>
+  <script src="./script/tabs.js"></script>
+  <script src="./script/main.js"></script>
+  <script src="./script/fontsize.js"></script>
+</head>
+<body>
+  <div id="mainContainer">
+    <header>
+      <div id="innerHeader">
+        <div id="topControls">
+          <form id="fontSizeform">
+            <span>Font size:</span>
+            <label for="fontSmall">Small</label><input type="radio" name="fontChanger" id="fontSmall" onclick="smallFont()">
+            <label for="fontBig">Large</label><input type="radio" name="fontChanger" id="fontBig" onclick="bigFont()">
+          </form>
+          <form id="switchform">
+            <label for="switchcontrol">Style:</label>
+            <select name="switchcontrol" id="switchcontrol" size="1" onchange="chooseStyle(this.options[this.selectedIndex].value, 365)">
+              <option value="none" selected="selected">Main (004040)</option>
+              <option value="Honten">Honten (303c6d)</option>
+              <option value="Nazo">Nazo (000000)</option>
+              <option value="Remix">Remix (eeeeee)</option>
+              <option value="Shiba">Shiba (007f7f)</option>
+            </select>
+          </form>
+        </div>
+        <div id="title">
+          <h1>Mattari AA <span class="aa">ヽ(´ー｀)ノ</span></h1>
+          <nav class="links"><a href="./changelog.html">Changelog</a></nav>
+        </div>
+      </div>
+      <details id="infoSection">
+        <summary>Information</summary>
+        <div class="infoContent">
+          <ul>
+            <li>You can use this page to design Ayashii World-style ASCII Art (AA).</li>
+            <li>The recommended font is MS Gothic, but IPAMonaGothic can be used as a substitute.</li>
+            <li>JavaScript is required to use the buttons and style options.</li>
+            <li>Some buttons will provide more information if you hover over them.</li>
+            <li>If you need a place to post your AA, try <a href="https://ayashii.net">Strange World<wbr>@<wbr>Heyuri</a>. <span class="aa">ヽ(´ー｀)ノ</span></li>
+          </ul>
+        </div>
+      </details>
+    </header>
+    <div id="pagerContainer">
+      <div id="pager">
+        <button id="btnpage1" class="tablinks active" onclick="openPage(event, 'page1')">1</button>
+        <button id="btnpage2" class="tablinks" onclick="openPage(event, 'page2')">2</button>
+        <button id="btnpage3" class="tablinks" onclick="openPage(event, 'page3')">3</button>
+        <button id="btnpage4" class="tablinks" onclick="openPage(event, 'page4')">4</button>
+        <button id="btnpage5" class="tablinks" onclick="openPage(event, 'page5')">5</button>
+        <button id="btnpage6" class="tablinks" onclick="openPage(event, 'page6')">6</button>
+        <button id="btnpage7" class="tablinks" onclick="openPage(event, 'page7')">7</button>
+        <button id="btnpage8" class="tablinks" onclick="openPage(event, 'page8')">8</button>
+        <button title="Latin (full-width)" id="btnpage9" class="tablinks" onclick="openPage(event, 'page9')">9</button>
+        <button title="Greek" id="btnpage10" class="tablinks" onclick="openPage(event, 'page10')">10</button>
+        <button title="Russian" id="btnpage11" class="tablinks" onclick="openPage(event, 'page11')">11</button>
+        <button title="Hiragana" id="btnpage12" class="tablinks" onclick="openPage(event, 'page12')">12</button>
+        <button title="Katakana (full-width)" id="btnpage13" class="tablinks" onclick="openPage(event, 'page13')">13</button>
+        <button title="Katakana (half-width)" id="btnpage14" class="tablinks" onclick="openPage(event, 'page14')">14</button>
+        <button title="Kaomoji" id="btnpage15" class="tablinks" onclick="openPage(event, 'page15')">15</button>
+        <button title="Templates" id="btnpage16" class="tablinks" onclick="openPage(event, 'page16')">16</button>
+      </div>
+    </div>
+    <div id="selectionContainer">
+      <!-- Page 1 -->
+      <div id="page1" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('┌','writeBox')">┌</button>
+        <button class="selectItem" onclick="insertThisInThere('┬','writeBox')">┬</button>
+        <button class="selectItem" onclick="insertThisInThere('┐','writeBox')">┐</button>
+        <button class="selectItem" onclick="insertThisInThere('─','writeBox')">─</button>
+
+        <button class="selectItem" onclick="insertThisInThere('├','writeBox')">├</button>
+        <button class="selectItem" onclick="insertThisInThere('┼','writeBox')">┼</button>
+        <button class="selectItem" onclick="insertThisInThere('┤','writeBox')">┤</button>
+        <button class="selectItem" onclick="insertThisInThere('│','writeBox')">│</button>
+
+        <button class="selectItem" onclick="insertThisInThere('└','writeBox')">└</button>
+        <button class="selectItem" onclick="insertThisInThere('┴','writeBox')">┴</button>
+        <button class="selectItem" onclick="insertThisInThere('┘','writeBox')">┘</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+          
+        <button class="selectItem" onclick="insertThisInThere('┏','writeBox')">┏</button>
+        <button class="selectItem" onclick="insertThisInThere('┳','writeBox')">┳</button>
+        <button class="selectItem" onclick="insertThisInThere('┓','writeBox')">┓</button>
+        <button class="selectItem" onclick="insertThisInThere('━','writeBox')">━</button>
+
+        <button class="selectItem" onclick="insertThisInThere('┣','writeBox')">┣</button>
+        <button class="selectItem" onclick="insertThisInThere('╋','writeBox')">╋</button>
+        <button class="selectItem" onclick="insertThisInThere('┫','writeBox')">┫</button>
+        <button class="selectItem" onclick="insertThisInThere('┃','writeBox')">┃</button>
+
+        <button class="selectItem" onclick="insertThisInThere('┗','writeBox')">┗</button>
+        <button class="selectItem" onclick="insertThisInThere('┻','writeBox')">┻</button>
+        <button class="selectItem" onclick="insertThisInThere('┛','writeBox')">┛</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('┯','writeBox')">┯</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('┠','writeBox')">┠</button>
+        <button class="selectItem" onclick="insertThisInThere('╂','writeBox')">╂</button>
+        <button class="selectItem" onclick="insertThisInThere('┨','writeBox')">┨</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('┷','writeBox')">┷</button>
+        <button class="selectItem" onclick="insertThisInThere('┰','writeBox')">┰</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('┝','writeBox')">┝</button>
+        <button class="selectItem" onclick="insertThisInThere('┿','writeBox')">┿</button>
+        <button class="selectItem" onclick="insertThisInThere('┥','writeBox')">┥</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('┸','writeBox')">┸</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('＿','writeBox')">＿</button>
+        <button class="selectItem" onclick="insertThisInThere('￣','writeBox')">￣</button>
+        <button class="selectItem" onclick="insertThisInThere('「','writeBox')">「</button>
+        <button class="selectItem" onclick="insertThisInThere('」','writeBox')">」</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('=','writeBox')">=</button>
+        <button class="selectItem" onclick="insertThisInThere('＝','writeBox')">＝</button>
+        <button class="selectItem" onclick="insertThisInThere('二','writeBox')">二</button>
+        <button class="selectItem" onclick="insertThisInThere('≡','writeBox')">≡</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('三','writeBox')">三</button>
+        <button class="selectItem" onclick="insertThisInThere('∥','writeBox')">∥</button>
+        <button class="selectItem" onclick="insertThisInThere('ー','writeBox')">ー</button>
+        <button class="selectItem" onclick="insertThisInThere('ｰ','writeBox')">ｰ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('⊂','writeBox')">⊂</button>
+        <button class="selectItem" onclick="insertThisInThere('⊃','writeBox')">⊃</button>
+        <button class="selectItem" onclick="insertThisInThere('∪','writeBox')">∪</button>
+        <button class="selectItem" onclick="insertThisInThere('∩','writeBox')">∩</button>
+
+        <button class="selectItem" onclick="insertThisInThere('∈','writeBox')">∈</button>
+        <button class="selectItem" onclick="insertThisInThere('∋','writeBox')">∋</button>
+        <button class="selectItem" onclick="insertThisInThere('⊆','writeBox')">⊆</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+      </div>
+      <!-- Page 2 -->
+      <div id="page2" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('＼','writeBox')">＼</button>
+        <button class="selectItem" onclick="insertThisInThere('丶','writeBox')">丶</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ','writeBox')">ヽ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヾ','writeBox')">ヾ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ゝ','writeBox')">ゝ</button>
+        <button class="selectItem" onclick="insertThisInThere('ゞ','writeBox')">ゞ</button>
+        <button class="selectItem" onclick="insertThisInThere('´','writeBox')">´</button>
+        <button class="selectItem" onclick="insertThisInThere('｀','writeBox')">｀</button>
+
+        <button class="selectItem" onclick="insertThisInThere('¨','writeBox')">¨</button>
+        <button title="Handakuten, will attach to the preceding character" class="selectItem" onclick="insertThisInThere('ﾟ','writeBox')">ﾟ</button>
+        <button title="Dakuten, will attach to the preceding character" class="selectItem" onclick="insertThisInThere('ﾞ','writeBox')">ﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('巛','writeBox')">巛</button>
+        <button class="selectItem" onclick="insertThisInThere('《','writeBox')">《</button>
+        <button class="selectItem" onclick="insertThisInThere('》','writeBox')">》</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ミ','writeBox')">ミ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾐ','writeBox')">ﾐ</button>
+        <button class="selectItem" onclick="insertThisInThere('彡','writeBox')">彡</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('へ','writeBox')">へ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヘ','writeBox')">ヘ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾍ','writeBox')">ﾍ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('／','writeBox')">／</button>
+        <button class="selectItem" onclick="insertThisInThere('/','writeBox')">/</button>
+        <button class="selectItem" onclick="insertThisInThere('丿','writeBox')">丿</button>
+        <button class="selectItem" onclick="insertThisInThere('ノ','writeBox')">ノ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ﾉ','writeBox')">ﾉ</button>
+        <button class="selectItem" onclick="insertThisInThere('ソ','writeBox')">ソ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｿ','writeBox')">ｿ</button>
+        <button class="selectItem" onclick="insertThisInThere('～','writeBox')">～</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('〆','writeBox')">〆</button>
+        <button class="selectItem" onclick="insertThisInThere('⊿','writeBox')">⊿</button>
+        <button class="selectItem" onclick="insertThisInThere('∠','writeBox')">∠</button>
+        <button class="selectItem" onclick="insertThisInThere('∟','writeBox')">∟</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('∧','writeBox')">∧</button>
+        <button class="selectItem" onclick="insertThisInThere('∨','writeBox')">∨</button>
+        <button class="selectItem" onclick="insertThisInThere('＜','writeBox')">＜</button>
+        <button class="selectItem" onclick="insertThisInThere('＞','writeBox')">＞</button>
+      </div>
+      <!-- Page 3 -->
+      <div id="page3" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('□','writeBox')">□</button>
+        <button class="selectItem" onclick="insertThisInThere('■','writeBox')">■</button>
+        <button class="selectItem" onclick="insertThisInThere('◇','writeBox')">◇</button>
+        <button class="selectItem" onclick="insertThisInThere('◆','writeBox')">◆</button>
+
+        <button class="selectItem" onclick="insertThisInThere('△','writeBox')">△</button>
+        <button class="selectItem" onclick="insertThisInThere('▲','writeBox')">▲</button>
+        <button class="selectItem" onclick="insertThisInThere('▽','writeBox')">▽</button>
+        <button class="selectItem" onclick="insertThisInThere('▼','writeBox')">▼</button>
+
+        <button class="selectItem" onclick="insertThisInThere('○','writeBox')">○</button>
+        <button class="selectItem" onclick="insertThisInThere('●','writeBox')">●</button>
+        <button class="selectItem" onclick="insertThisInThere('☆','writeBox')">☆</button>
+        <button class="selectItem" onclick="insertThisInThere('★','writeBox')">★</button>
+
+        <button class="selectItem" onclick="insertThisInThere('◎','writeBox')">◎</button>
+        <button class="selectItem" onclick="insertThisInThere('∞','writeBox')">∞</button>
+        <button class="selectItem" onclick="insertThisInThere('∽','writeBox')">∽</button>
+        <button class="selectItem" onclick="insertThisInThere('∝','writeBox')">∝</button>
+
+        <button class="selectItem" onclick="insertThisInThere('↑','writeBox')">↑</button>
+        <button class="selectItem" onclick="insertThisInThere('↓','writeBox')">↓</button>
+        <button class="selectItem" onclick="insertThisInThere('←','writeBox')">←</button>
+        <button class="selectItem" onclick="insertThisInThere('→','writeBox')">→</button>
+
+        <button class="selectItem" onclick="insertThisInThere('＋','writeBox')">＋</button>
+        <button class="selectItem" onclick="insertThisInThere('－','writeBox')">－</button>
+        <button class="selectItem" onclick="insertThisInThere('×','writeBox')">×</button>
+        <button class="selectItem" onclick="insertThisInThere('÷','writeBox')">÷</button>
+
+        <button class="selectItem" onclick="insertThisInThere('±','writeBox')">±</button>
+        <button class="selectItem" onclick="insertThisInThere('＝','writeBox')">＝</button>
+        <button class="selectItem" onclick="insertThisInThere('≠','writeBox')">≠</button>
+        <button class="selectItem" onclick="insertThisInThere('≡','writeBox')">≡</button>
+
+        <button class="selectItem" onclick="insertThisInThere('≒','writeBox')">≒</button>
+        <button class="selectItem" onclick="insertThisInThere('∂','writeBox')">∂</button>
+        <button class="selectItem" onclick="insertThisInThere('∫','writeBox')">∫</button>
+        <button class="selectItem" onclick="insertThisInThere('∬','writeBox')">∬</button>
+
+        <button class="selectItem" onclick="insertThisInThere('＜','writeBox')">＜</button>
+        <button class="selectItem" onclick="insertThisInThere('＞','writeBox')">＞</button>
+        <button class="selectItem" onclick="insertThisInThere('≦','writeBox')">≦</button>
+        <button class="selectItem" onclick="insertThisInThere('≧','writeBox')">≧</button>
+
+        <button class="selectItem" onclick="insertThisInThere('≪','writeBox')">≪</button>
+        <button class="selectItem" onclick="insertThisInThere('≫','writeBox')">≫</button>
+        <button class="selectItem" onclick="insertThisInThere('∴','writeBox')">∴</button>
+        <button class="selectItem" onclick="insertThisInThere('∵','writeBox')">∵</button>
+
+        <button class="selectItem" onclick="insertThisInThere('√','writeBox')">√</button>
+        <button class="selectItem" onclick="insertThisInThere('∠','writeBox')">∠</button>
+        <button class="selectItem" onclick="insertThisInThere('⊥','writeBox')">⊥</button>
+        <button class="selectItem" onclick="insertThisInThere('⌒','writeBox')">⌒</button>
+
+        <button class="selectItem" onclick="insertThisInThere('１','writeBox')">１</button>
+        <button class="selectItem" onclick="insertThisInThere('２','writeBox')">２</button>
+        <button class="selectItem" onclick="insertThisInThere('３','writeBox')">３</button>
+        <button class="selectItem" onclick="insertThisInThere('４','writeBox')">４</button>
+
+        <button class="selectItem" onclick="insertThisInThere('５','writeBox')">５</button>
+        <button class="selectItem" onclick="insertThisInThere('６','writeBox')">６</button>
+        <button class="selectItem" onclick="insertThisInThere('７','writeBox')">７</button>
+        <button class="selectItem" onclick="insertThisInThere('８','writeBox')">８</button>
+
+        <button class="selectItem" onclick="insertThisInThere('９','writeBox')">９</button>
+        <button class="selectItem" onclick="insertThisInThere('０','writeBox')">０</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+      </div>
+      <!-- Page 4 -->
+      <div id="page4" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('∧','writeBox')">∧</button>
+        <button class="selectItem" onclick="insertThisInThere('∨','writeBox')">∨</button>
+        <button class="selectItem" onclick="insertThisInThere('⇒','writeBox')">⇒</button>
+        <button class="selectItem" onclick="insertThisInThere('⇔','writeBox')">⇔</button>
+
+        <button class="selectItem" onclick="insertThisInThere('￢','writeBox')">￢</button>
+        <button class="selectItem" onclick="insertThisInThere('∇','writeBox')">∇</button>
+        <button class="selectItem" onclick="insertThisInThere('†','writeBox')">†</button>
+        <button class="selectItem" onclick="insertThisInThere('‡','writeBox')">‡</button>
+
+        <button class="selectItem" onclick="insertThisInThere('∀','writeBox')">∀</button>
+        <button class="selectItem" onclick="insertThisInThere('∃','writeBox')">∃</button>
+        <button class="selectItem" onclick="insertThisInThere('♂','writeBox')">♂</button>
+        <button class="selectItem" onclick="insertThisInThere('♀','writeBox')">♀</button>
+
+        <button class="selectItem" onclick="insertThisInThere('＃','writeBox')">＃</button>
+        <button class="selectItem" onclick="insertThisInThere('＆','writeBox')">＆</button>
+        <button class="selectItem" onclick="insertThisInThere('＊','writeBox')">＊</button>
+        <button class="selectItem" onclick="insertThisInThere('＠','writeBox')">＠</button>
+
+        <button class="selectItem" onclick="insertThisInThere('※','writeBox')">※</button>
+        <button class="selectItem" onclick="insertThisInThere('〒','writeBox')">〒</button>
+        <button class="selectItem" onclick="insertThisInThere('〓','writeBox')">〓</button>
+        <button class="selectItem" onclick="insertThisInThere('◯','writeBox')">◯</button>
+
+        <button class="selectItem" onclick="insertThisInThere('♯','writeBox')">♯</button>
+        <button class="selectItem" onclick="insertThisInThere('♭','writeBox')">♭</button>
+        <button class="selectItem" onclick="insertThisInThere('♪','writeBox')">♪</button>
+        <button class="selectItem" onclick="insertThisInThere('¶','writeBox')">¶</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('￥','writeBox')">￥</button>
+        <button class="selectItem" onclick="insertThisInThere('＄','writeBox')">＄</button>
+        <button class="selectItem" onclick="insertThisInThere('￠','writeBox')">￠</button>
+        <button class="selectItem" onclick="insertThisInThere('￡','writeBox')">￡</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Å','writeBox')">Å</button>
+        <button class="selectItem" onclick="insertThisInThere('℃','writeBox')">℃</button>
+        <button class="selectItem" onclick="insertThisInThere('％','writeBox')">％</button>
+        <button class="selectItem" onclick="insertThisInThere('‰','writeBox')">‰</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ﾞ','writeBox')">ﾞ</button>
+        <button title="This one will attach to the preceding character" class="selectItem" onclick="insertThisInThere('ﾟ','writeBox')">ﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('°','writeBox')">°</button>
+        <button class="selectItem" onclick="insertThisInThere(' ﾟ','writeBox')"> ﾟ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('′','writeBox')">′</button>
+        <button class="selectItem" onclick="insertThisInThere('″','writeBox')">″</button>
+        <button class="selectItem" onclick="insertThisInThere('§','writeBox')">§</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+      </div>
+      
+      <!-- Page 5 -->
+      <div id="page5" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('イ','writeBox')">イ</button>
+        <button class="selectItem" onclick="insertThisInThere('彳','writeBox')">彳</button>
+        <button class="selectItem" onclick="insertThisInThere('匚','writeBox')">匚</button>
+        <button class="selectItem" onclick="insertThisInThere('亠','writeBox')">亠</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('斤','writeBox')">斤</button>
+        <button class="selectItem" onclick="insertThisInThere('廿','writeBox')">廿</button>
+        <button class="selectItem" onclick="insertThisInThere('个','writeBox')">个</button>
+        <button class="selectItem" onclick="insertThisInThere('〒','writeBox')">〒</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('┴','writeBox')">┴</button>
+        <button class="selectItem" onclick="insertThisInThere('Π','writeBox')">Π</button>
+        <button class="selectItem" onclick="insertThisInThere('Τ','writeBox')">Τ</button>
+        <button class="selectItem" onclick="insertThisInThere('∞','writeBox')">∞</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('∽','writeBox')">∽</button>
+        <button class="selectItem" onclick="insertThisInThere('∝','writeBox')">∝</button>
+        <button class="selectItem" onclick="insertThisInThere('∩','writeBox')">∩</button>
+        <button class="selectItem" onclick="insertThisInThere('∪','writeBox')">∪</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('υ','writeBox')">υ</button>
+        <button class="selectItem" onclick="insertThisInThere('ι','writeBox')">ι</button>
+        <button class="selectItem" onclick="insertThisInThere('θ','writeBox')">θ</button>
+        <button class="selectItem" onclick="insertThisInThere('σ','writeBox')">σ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ρ','writeBox')">ρ</button>
+        <button class="selectItem" onclick="insertThisInThere('δ','writeBox')">δ</button>
+        <button class="selectItem" onclick="insertThisInThere('б','writeBox')">б</button>
+        <button class="selectItem" onclick="insertThisInThere('ъ','writeBox')">ъ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('Ц','writeBox')">Ц</button>
+        <button class="selectItem" onclick="insertThisInThere('庁','writeBox')">庁</button>
+        <button class="selectItem" onclick="insertThisInThere('丁','writeBox')">丁</button>
+        <button class="selectItem" onclick="insertThisInThere('了','writeBox')">了</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('凵','writeBox')">凵</button>
+        <button class="selectItem" onclick="insertThisInThere('∂','writeBox')">∂</button>
+        <button class="selectItem" onclick="insertThisInThere('皿','writeBox')">皿</button>
+        <button class="selectItem" onclick="insertThisInThere('血','writeBox')">血</button>
+      </div>
+      <!-- Page 6 -->
+      <div id="page6" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('一','writeBox')">一</button>
+        <button class="selectItem" onclick="insertThisInThere('凹','writeBox')">凹</button>
+        <button class="selectItem" onclick="insertThisInThere('叶','writeBox')">叶</button>
+        <button class="selectItem" onclick="insertThisInThere('干','writeBox')">干</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('久','writeBox')">久</button>
+        <button class="selectItem" onclick="insertThisInThere('災','writeBox')">災</button>
+        <button class="selectItem" onclick="insertThisInThere('咋','writeBox')">咋</button>
+        <button class="selectItem" onclick="insertThisInThere('昨','writeBox')">昨</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('皿','writeBox')">皿</button>
+        <button class="selectItem" onclick="insertThisInThere('三','writeBox')">三</button>
+        <button class="selectItem" onclick="insertThisInThere('山','writeBox')">山</button>
+        <button class="selectItem" onclick="insertThisInThere('士','writeBox')">士</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('什','writeBox')">什</button>
+        <button class="selectItem" onclick="insertThisInThere('十','writeBox')">十</button>
+        <button class="selectItem" onclick="insertThisInThere('汁','writeBox')">汁</button>
+        <button class="selectItem" onclick="insertThisInThere('升','writeBox')">升</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('小','writeBox')">小</button>
+        <button class="selectItem" onclick="insertThisInThere('少','writeBox')">少</button>
+        <button class="selectItem" onclick="insertThisInThere('上','writeBox')">上</button>
+        <button class="selectItem" onclick="insertThisInThere('人','writeBox')">人</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('心','writeBox')">心</button>
+        <button class="selectItem" onclick="insertThisInThere('壬','writeBox')">壬</button>
+        <button class="selectItem" onclick="insertThisInThere('石','writeBox')">石</button>
+        <button class="selectItem" onclick="insertThisInThere('川','writeBox')">川</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('大','writeBox')">大</button>
+        <button class="selectItem" onclick="insertThisInThere('只','writeBox')">只</button>
+        <button class="selectItem" onclick="insertThisInThere('中','writeBox')">中</button>
+        <button class="selectItem" onclick="insertThisInThere('丁','writeBox')">丁</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('刀','writeBox')">刀</button>
+        <button class="selectItem" onclick="insertThisInThere('凸','writeBox')">凸</button>
+        <button class="selectItem" onclick="insertThisInThere('乍','writeBox')">乍</button>
+        <button class="selectItem" onclick="insertThisInThere('二','writeBox')">二</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('廿','writeBox')">廿</button>
+        <button class="selectItem" onclick="insertThisInThere('入','writeBox')">入</button>
+        <button class="selectItem" onclick="insertThisInThere('八','writeBox')">八</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+      </div>
+      <!-- Page 7 -->
+      <div id="page7" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('亡','writeBox')">亡</button>
+        <button class="selectItem" onclick="insertThisInThere('卜','writeBox')">卜</button>
+        <button class="selectItem" onclick="insertThisInThere('又','writeBox')">又</button>
+        <button class="selectItem" onclick="insertThisInThere('毛','writeBox')">毛</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('夕','writeBox')">夕</button>
+        <button class="selectItem" onclick="insertThisInThere('了','writeBox')">了</button>
+        <button class="selectItem" onclick="insertThisInThere('丶','writeBox')">丶</button>
+        <button class="selectItem" onclick="insertThisInThere('丿','writeBox')">丿</button>
+
+        <button class="selectItem" onclick="insertThisInThere('乂','writeBox')">乂</button>
+        <button class="selectItem" onclick="insertThisInThere('亅','writeBox')">亅</button>
+        <button class="selectItem" onclick="insertThisInThere('亠','writeBox')">亠</button>
+        <button class="selectItem" onclick="insertThisInThere('从','writeBox')">从</button>
+
+        <button class="selectItem" onclick="insertThisInThere('仆','writeBox')">仆</button>
+        <button class="selectItem" onclick="insertThisInThere('儿','writeBox')">儿</button>
+        <button class="selectItem" onclick="insertThisInThere('兀','writeBox')">兀</button>
+        <button class="selectItem" onclick="insertThisInThere('冂','writeBox')">冂</button>
+
+        <button class="selectItem" onclick="insertThisInThere('冖','writeBox')">冖</button>
+        <button class="selectItem" onclick="insertThisInThere('冫','writeBox')">冫</button>
+        <button class="selectItem" onclick="insertThisInThere('几','writeBox')">几</button>
+        <button class="selectItem" onclick="insertThisInThere('凵','writeBox')">凵</button>
+
+        <button class="selectItem" onclick="insertThisInThere('勹','writeBox')">勹</button>
+        <button class="selectItem" onclick="insertThisInThere('匕','writeBox')">匕</button>
+        <button class="selectItem" onclick="insertThisInThere('匚','writeBox')">匚</button>
+        <button class="selectItem" onclick="insertThisInThere('匸','writeBox')">匸</button>
+
+        <button class="selectItem" onclick="insertThisInThere('卅','writeBox')">卅</button>
+        <button class="selectItem" onclick="insertThisInThere('卞','writeBox')">卞</button>
+        <button class="selectItem" onclick="insertThisInThere('厂','writeBox')">厂</button>
+        <button class="selectItem" onclick="insertThisInThere('叮','writeBox')">叮</button>
+
+        <button class="selectItem" onclick="insertThisInThere('叭','writeBox')">叭</button>
+        <button class="selectItem" onclick="insertThisInThere('叨','writeBox')">叨</button>
+        <button class="selectItem" onclick="insertThisInThere('夂','writeBox')">夂</button>
+        <button class="selectItem" onclick="insertThisInThere('宀','writeBox')">宀</button>
+
+        <button class="selectItem" onclick="insertThisInThere('幵','writeBox')">幵</button>
+        <button class="selectItem" onclick="insertThisInThere('广','writeBox')">广</button>
+        <button class="selectItem" onclick="insertThisInThere('廾','writeBox')">廾</button>
+        <button class="selectItem" onclick="insertThisInThere('弋','writeBox')">弋</button>
+
+        <button class="selectItem" onclick="insertThisInThere('彡','writeBox')">彡</button>
+        <button class="selectItem" onclick="insertThisInThere('彳','writeBox')">彳</button>
+        <button class="selectItem" onclick="insertThisInThere('鬥','writeBox')">鬥</button>
+        <button class="selectItem" onclick="insertThisInThere('丨','writeBox')">丨</button>
+
+        <button class="selectItem" onclick="insertThisInThere('＇','writeBox')">＇</button>
+        <button class="selectItem" onclick="insertThisInThere('＂','writeBox')">＂</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+      </div>
+      <!-- Page 8 -->
+      <div id="page8" class="selectionBox tabcontent">
+        <button title="Milli" class="selectItem" onclick="insertThisInThere('㍉','writeBox')">㍉</button>
+        <button title="Kilo" class="selectItem" onclick="insertThisInThere('㌔','writeBox')">㌔</button>
+        <button title="Centi" class="selectItem" onclick="insertThisInThere('㌢','writeBox')">㌢</button>
+        <button title="Meter" class="selectItem" onclick="insertThisInThere('㍍','writeBox')">㍍</button>
+        
+        <button title="Gram" class="selectItem" onclick="insertThisInThere('㌘','writeBox')">㌘</button>
+        <button title="Ton" class="selectItem" onclick="insertThisInThere('㌧','writeBox')">㌧</button>
+        <button title="Are" class="selectItem" onclick="insertThisInThere('㌃','writeBox')">㌃</button>
+        <button title="Hectare" class="selectItem" onclick="insertThisInThere('㌶','writeBox')">㌶</button>
+
+        <button title="Liter" class="selectItem" onclick="insertThisInThere('㍑','writeBox')">㍑</button>
+        <button title="Watt" class="selectItem" onclick="insertThisInThere('㍗','writeBox')">㍗</button>
+        <button title="Calorie" class="selectItem" onclick="insertThisInThere('㌍','writeBox')">㌍</button>
+        <button title="Dollar" class="selectItem" onclick="insertThisInThere('㌦','writeBox')">㌦</button>
+
+        <button title="Cent" class="selectItem" onclick="insertThisInThere('㌣','writeBox')">㌣</button>
+        <button title="Percent" class="selectItem" onclick="insertThisInThere('㌫','writeBox')">㌫</button>
+        <button title="Millibar" class="selectItem" onclick="insertThisInThere('㍊','writeBox')">㍊</button>
+        <button title="Page" class="selectItem" onclick="insertThisInThere('㌻','writeBox')">㌻</button>
+
+        <button class="selectItem" onclick="insertThisInThere('㎜','writeBox')">㎜</button>
+        <button class="selectItem" onclick="insertThisInThere('㎝','writeBox')">㎝</button>
+        <button class="selectItem" onclick="insertThisInThere('㎞','writeBox')">㎞</button>
+        <button class="selectItem" onclick="insertThisInThere('㎎','writeBox')">㎎</button>
+
+        <button class="selectItem" onclick="insertThisInThere('㎏','writeBox')">㎏</button>
+        <button class="selectItem" onclick="insertThisInThere('㏄','writeBox')">㏄</button>
+        <button class="selectItem" onclick="insertThisInThere('㎡','writeBox')">㎡</button>
+        <button class="selectItem" onclick="insertThisInThere('℡','writeBox')">℡</button>
+
+        <button class="selectItem" onclick="insertThisInThere('〝','writeBox')">〝</button>
+        <button class="selectItem" onclick="insertThisInThere('〟','writeBox')">〟</button>
+        <button class="selectItem" onclick="insertThisInThere('№','writeBox')">№</button>
+        <button class="selectItem" onclick="insertThisInThere('㏍','writeBox')">㏍</button>
+
+        <button title="Meiji" class="selectItem" onclick="insertThisInThere('㍾','writeBox')">㍾</button>
+        <button title="Taisho" class="selectItem" onclick="insertThisInThere('㍽','writeBox')">㍽</button>
+        <button title="Showa" class="selectItem" onclick="insertThisInThere('㍼','writeBox')">㍼</button>
+        <button title="Heisei" class="selectItem" onclick="insertThisInThere('㍻','writeBox')">㍻</button>
+
+        <button title="Reiwa (not supported on older systems)" class="selectItem" onclick="insertThisInThere('㋿','writeBox')">㋿</button>
+        <button title="Kabushiki kaisha (stock company)" class="selectItem" onclick="insertThisInThere('㈱','writeBox')">㈱</button>
+        <button title="Yuugen kaisha (limited company)" class="selectItem" onclick="insertThisInThere('㈲','writeBox')">㈲</button>
+        <button title="Daihyou denwa (switchboard)" class="selectItem" onclick="insertThisInThere('㈹','writeBox')">㈹</button>
+
+        <button title="High" class="selectItem" onclick="insertThisInThere('㊤','writeBox')">㊤</button>
+        <button title="Center" class="selectItem" onclick="insertThisInThere('㊥','writeBox')">㊥</button>
+        <button title="Low" class="selectItem" onclick="insertThisInThere('㊦','writeBox')">㊦</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button title="Left" class="selectItem" onclick="insertThisInThere('㊧','writeBox')">㊧</button>
+        <button title="Right" class="selectItem" onclick="insertThisInThere('㊨','writeBox')">㊨</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+      </div>
+      <!-- Page 9 -->
+      <div id="page9" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('ａ','writeBox')">ａ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｂ','writeBox')">ｂ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｃ','writeBox')">ｃ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｄ','writeBox')">ｄ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ｅ','writeBox')">ｅ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｆ','writeBox')">ｆ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｇ','writeBox')">ｇ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｈ','writeBox')">ｈ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ｉ','writeBox')">ｉ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｊ','writeBox')">ｊ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｋ','writeBox')">ｋ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｌ','writeBox')">ｌ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ｍ','writeBox')">ｍ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｎ','writeBox')">ｎ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｏ','writeBox')">ｏ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｐ','writeBox')">ｐ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ｑ','writeBox')">ｑ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｒ','writeBox')">ｒ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｓ','writeBox')">ｓ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｔ','writeBox')">ｔ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ｕ','writeBox')">ｕ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｖ','writeBox')">ｖ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｗ','writeBox')">ｗ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｘ','writeBox')">ｘ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ｙ','writeBox')">ｙ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｚ','writeBox')">ｚ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ａ','writeBox')">Ａ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｂ','writeBox')">Ｂ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｃ','writeBox')">Ｃ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｄ','writeBox')">Ｄ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ｅ','writeBox')">Ｅ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｆ','writeBox')">Ｆ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｇ','writeBox')">Ｇ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｈ','writeBox')">Ｈ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ｉ','writeBox')">Ｉ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｊ','writeBox')">Ｊ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｋ','writeBox')">Ｋ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｌ','writeBox')">Ｌ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ｍ','writeBox')">Ｍ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｎ','writeBox')">Ｎ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｏ','writeBox')">Ｏ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｐ','writeBox')">Ｐ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ｑ','writeBox')">Ｑ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｒ','writeBox')">Ｒ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｓ','writeBox')">Ｓ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｔ','writeBox')">Ｔ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ｕ','writeBox')">Ｕ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｖ','writeBox')">Ｖ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｗ','writeBox')">Ｗ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｘ','writeBox')">Ｘ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ｙ','writeBox')">Ｙ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ｚ','writeBox')">Ｚ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ⅰ','writeBox')">ⅰ</button>
+        <button class="selectItem" onclick="insertThisInThere('ⅱ','writeBox')">ⅱ</button>
+        <button class="selectItem" onclick="insertThisInThere('ⅲ','writeBox')">ⅲ</button>
+        <button class="selectItem" onclick="insertThisInThere('ⅳ','writeBox')">ⅳ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ⅴ','writeBox')">ⅴ</button>
+        <button class="selectItem" onclick="insertThisInThere('ⅵ','writeBox')">ⅵ</button>
+        <button class="selectItem" onclick="insertThisInThere('ⅶ','writeBox')">ⅶ</button>
+        <button class="selectItem" onclick="insertThisInThere('ⅷ','writeBox')">ⅷ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ⅸ','writeBox')">ⅸ</button>
+        <button class="selectItem" onclick="insertThisInThere('ⅹ','writeBox')">ⅹ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ⅰ','writeBox')">Ⅰ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ⅱ','writeBox')">Ⅱ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ⅲ','writeBox')">Ⅲ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ⅳ','writeBox')">Ⅳ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ⅴ','writeBox')">Ⅴ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ⅵ','writeBox')">Ⅵ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ⅶ','writeBox')">Ⅶ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ⅷ','writeBox')">Ⅷ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ⅸ','writeBox')">Ⅸ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ⅹ','writeBox')">Ⅹ</button>
+      </div>
+      <!-- Page 10 -->
+      <div id="page10" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('α','writeBox')">α</button>
+        <button class="selectItem" onclick="insertThisInThere('β','writeBox')">β</button>
+        <button class="selectItem" onclick="insertThisInThere('γ','writeBox')">γ</button>
+        <button class="selectItem" onclick="insertThisInThere('δ','writeBox')">δ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ε','writeBox')">ε</button>
+        <button class="selectItem" onclick="insertThisInThere('ζ','writeBox')">ζ</button>
+        <button class="selectItem" onclick="insertThisInThere('η','writeBox')">η</button>
+        <button class="selectItem" onclick="insertThisInThere('θ','writeBox')">θ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ι','writeBox')">ι</button>
+        <button class="selectItem" onclick="insertThisInThere('κ','writeBox')">κ</button>
+        <button class="selectItem" onclick="insertThisInThere('λ','writeBox')">λ</button>
+        <button class="selectItem" onclick="insertThisInThere('μ','writeBox')">μ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ν','writeBox')">ν</button>
+        <button class="selectItem" onclick="insertThisInThere('ξ','writeBox')">ξ</button>
+        <button class="selectItem" onclick="insertThisInThere('ο','writeBox')">ο</button>
+        <button class="selectItem" onclick="insertThisInThere('π','writeBox')">π</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ρ','writeBox')">ρ</button>
+        <button class="selectItem" onclick="insertThisInThere('σ','writeBox')">σ</button>
+        <button class="selectItem" onclick="insertThisInThere('τ','writeBox')">τ</button>
+        <button class="selectItem" onclick="insertThisInThere('υ','writeBox')">υ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('φ','writeBox')">φ</button>
+        <button class="selectItem" onclick="insertThisInThere('χ','writeBox')">χ</button>
+        <button class="selectItem" onclick="insertThisInThere('ψ','writeBox')">ψ</button>
+        <button class="selectItem" onclick="insertThisInThere('ω','writeBox')">ω</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Α','writeBox')">Α</button>
+        <button class="selectItem" onclick="insertThisInThere('Β','writeBox')">Β</button>
+        <button class="selectItem" onclick="insertThisInThere('Γ','writeBox')">Γ</button>
+        <button class="selectItem" onclick="insertThisInThere('Δ','writeBox')">Δ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ε','writeBox')">Ε</button>
+        <button class="selectItem" onclick="insertThisInThere('Ζ','writeBox')">Ζ</button>
+        <button class="selectItem" onclick="insertThisInThere('Η','writeBox')">Η</button>
+        <button class="selectItem" onclick="insertThisInThere('Θ','writeBox')">Θ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('Ι','writeBox')">Ι</button>
+        <button class="selectItem" onclick="insertThisInThere('Κ','writeBox')">Κ</button>
+        <button class="selectItem" onclick="insertThisInThere('Λ','writeBox')">Λ</button>
+        <button class="selectItem" onclick="insertThisInThere('Μ','writeBox')">Μ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ν','writeBox')">Ν</button>
+        <button class="selectItem" onclick="insertThisInThere('Ξ','writeBox')">Ξ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ο','writeBox')">Ο</button>
+        <button class="selectItem" onclick="insertThisInThere('Π','writeBox')">Π</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ρ','writeBox')">Ρ</button>
+        <button class="selectItem" onclick="insertThisInThere('Σ','writeBox')">Σ</button>
+        <button class="selectItem" onclick="insertThisInThere('Τ','writeBox')">Τ</button>
+        <button class="selectItem" onclick="insertThisInThere('Υ','writeBox')">Υ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Φ','writeBox')">Φ</button>
+        <button class="selectItem" onclick="insertThisInThere('Χ','writeBox')">Χ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ψ','writeBox')">Ψ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ω','writeBox')">Ω</button>
+      </div>
+      <!-- Page 11 -->
+      <div id="page11" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('а','writeBox')">а</button>
+        <button class="selectItem" onclick="insertThisInThere('б','writeBox')">б</button>
+        <button class="selectItem" onclick="insertThisInThere('в','writeBox')">в</button>
+        <button class="selectItem" onclick="insertThisInThere('г','writeBox')">г</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('д','writeBox')">д</button>
+        <button class="selectItem" onclick="insertThisInThere('е','writeBox')">е</button>
+        <button class="selectItem" onclick="insertThisInThere('ё','writeBox')">ё</button>
+        <button class="selectItem" onclick="insertThisInThere('ж','writeBox')">ж</button>
+
+        <button class="selectItem" onclick="insertThisInThere('з','writeBox')">з</button>
+        <button class="selectItem" onclick="insertThisInThere('и','writeBox')">и</button>
+        <button class="selectItem" onclick="insertThisInThere('й','writeBox')">й</button>
+        <button class="selectItem" onclick="insertThisInThere('к','writeBox')">к</button>
+
+        <button class="selectItem" onclick="insertThisInThere('л','writeBox')">л</button>
+        <button class="selectItem" onclick="insertThisInThere('р','writeBox')">р</button>
+        <button class="selectItem" onclick="insertThisInThere('с','writeBox')">с</button>
+        <button class="selectItem" onclick="insertThisInThere('т','writeBox')">т</button>
+
+        <button class="selectItem" onclick="insertThisInThere('у','writeBox')">у</button>
+        <button class="selectItem" onclick="insertThisInThere('ф','writeBox')">ф</button>
+        <button class="selectItem" onclick="insertThisInThere('х','writeBox')">х</button>
+        <button class="selectItem" onclick="insertThisInThere('ц','writeBox')">ц</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ч','writeBox')">ч</button>
+        <button class="selectItem" onclick="insertThisInThere('ш','writeBox')">ш</button>
+        <button class="selectItem" onclick="insertThisInThere('щ','writeBox')">щ</button>
+        <button class="selectItem" onclick="insertThisInThere('ъ','writeBox')">ъ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ы','writeBox')">ы</button>
+        <button class="selectItem" onclick="insertThisInThere('ь','writeBox')">ь</button>
+        <button class="selectItem" onclick="insertThisInThere('э','writeBox')">э</button>
+        <button class="selectItem" onclick="insertThisInThere('ю','writeBox')">ю</button>
+
+        <button class="selectItem" onclick="insertThisInThere('я','writeBox')">я</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('А','writeBox')">А</button>
+        <button class="selectItem" onclick="insertThisInThere('Б','writeBox')">Б</button>
+        <button class="selectItem" onclick="insertThisInThere('В','writeBox')">В</button>
+        <button class="selectItem" onclick="insertThisInThere('Г','writeBox')">Г</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Д','writeBox')">Д</button>
+        <button class="selectItem" onclick="insertThisInThere('Е','writeBox')">Е</button>
+        <button class="selectItem" onclick="insertThisInThere('Ё','writeBox')">Ё</button>
+        <button class="selectItem" onclick="insertThisInThere('Ж','writeBox')">Ж</button>
+
+        <button class="selectItem" onclick="insertThisInThere('З','writeBox')">З</button>
+        <button class="selectItem" onclick="insertThisInThere('И','writeBox')">И</button>
+        <button class="selectItem" onclick="insertThisInThere('Й','writeBox')">Й</button>
+        <button class="selectItem" onclick="insertThisInThere('К','writeBox')">К</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Л','writeBox')">Л</button>
+        <button class="selectItem" onclick="insertThisInThere('М','writeBox')">М</button>
+        <button class="selectItem" onclick="insertThisInThere('Н','writeBox')">Н</button>
+        <button class="selectItem" onclick="insertThisInThere('О','writeBox')">О</button>
+
+        <button class="selectItem" onclick="insertThisInThere('П','writeBox')">П</button>
+        <button class="selectItem" onclick="insertThisInThere('Р','writeBox')">Р</button>
+        <button class="selectItem" onclick="insertThisInThere('С','writeBox')">С</button>
+        <button class="selectItem" onclick="insertThisInThere('Т','writeBox')">Т</button>
+
+        <button class="selectItem" onclick="insertThisInThere('У','writeBox')">У</button>
+        <button class="selectItem" onclick="insertThisInThere('Ф','writeBox')">Ф</button>
+        <button class="selectItem" onclick="insertThisInThere('Х','writeBox')">Х</button>
+        <button class="selectItem" onclick="insertThisInThere('Ц','writeBox')">Ц</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ч','writeBox')">Ч</button>
+        <button class="selectItem" onclick="insertThisInThere('Ш','writeBox')">Ш</button>
+        <button class="selectItem" onclick="insertThisInThere('Щ','writeBox')">Щ</button>
+        <button class="selectItem" onclick="insertThisInThere('Ъ','writeBox')">Ъ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Ы','writeBox')">Ы</button>
+        <button class="selectItem" onclick="insertThisInThere('Ь','writeBox')">Ь</button>
+        <button class="selectItem" onclick="insertThisInThere('Э','writeBox')">Э</button>
+        <button class="selectItem" onclick="insertThisInThere('Ю','writeBox')">Ю</button>
+
+        <button class="selectItem" onclick="insertThisInThere('Я','writeBox')">Я</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+      </div>
+      <!-- Page 12 -->
+      <div id="page12" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('た','writeBox')">た</button>
+        <button class="selectItem" onclick="insertThisInThere('さ','writeBox')">さ</button>
+        <button class="selectItem" onclick="insertThisInThere('か','writeBox')">か</button>
+        <button class="selectItem" onclick="insertThisInThere('あ','writeBox')">あ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ち','writeBox')">ち</button>
+        <button class="selectItem" onclick="insertThisInThere('し','writeBox')">し</button>
+        <button class="selectItem" onclick="insertThisInThere('き','writeBox')">き</button>
+        <button class="selectItem" onclick="insertThisInThere('い','writeBox')">い</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('つ','writeBox')">つ</button>
+        <button class="selectItem" onclick="insertThisInThere('す','writeBox')">す</button>
+        <button class="selectItem" onclick="insertThisInThere('く','writeBox')">く</button>
+        <button class="selectItem" onclick="insertThisInThere('う','writeBox')">う</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('て','writeBox')">て</button>
+        <button class="selectItem" onclick="insertThisInThere('せ','writeBox')">せ</button>
+        <button class="selectItem" onclick="insertThisInThere('け','writeBox')">け</button>
+        <button class="selectItem" onclick="insertThisInThere('え','writeBox')">え</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('と','writeBox')">と</button>
+        <button class="selectItem" onclick="insertThisInThere('そ','writeBox')">そ</button>
+        <button class="selectItem" onclick="insertThisInThere('こ','writeBox')">こ</button>
+        <button class="selectItem" onclick="insertThisInThere('お','writeBox')">お</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('や','writeBox')">や</button>
+        <button class="selectItem" onclick="insertThisInThere('ま','writeBox')">ま</button>
+        <button class="selectItem" onclick="insertThisInThere('は','writeBox')">は</button>
+        <button class="selectItem" onclick="insertThisInThere('な','writeBox')">な</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('み','writeBox')">み</button>
+        <button class="selectItem" onclick="insertThisInThere('ひ','writeBox')">ひ</button>
+        <button class="selectItem" onclick="insertThisInThere('に','writeBox')">に</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ゆ','writeBox')">ゆ</button>
+        <button class="selectItem" onclick="insertThisInThere('む','writeBox')">む</button>
+        <button class="selectItem" onclick="insertThisInThere('ふ','writeBox')">ふ</button>
+        <button class="selectItem" onclick="insertThisInThere('ぬ','writeBox')">ぬ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('め','writeBox')">め</button>
+        <button class="selectItem" onclick="insertThisInThere('へ','writeBox')">へ</button>
+        <button class="selectItem" onclick="insertThisInThere('ね','writeBox')">ね</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('よ','writeBox')">よ</button>
+        <button class="selectItem" onclick="insertThisInThere('も','writeBox')">も</button>
+        <button class="selectItem" onclick="insertThisInThere('ほ','writeBox')">ほ</button>
+        <button class="selectItem" onclick="insertThisInThere('の','writeBox')">の</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ゃ','writeBox')">ゃ</button>
+        <button class="selectItem" onclick="insertThisInThere('ん','writeBox')">ん</button>
+        <button class="selectItem" onclick="insertThisInThere('わ','writeBox')">わ</button>
+        <button class="selectItem" onclick="insertThisInThere('ら','writeBox')">ら</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ゐ','writeBox')">ゐ</button>
+        <button class="selectItem" onclick="insertThisInThere('り','writeBox')">り</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ゅ','writeBox')">ゅ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('る','writeBox')">る</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ゑ','writeBox')">ゑ</button>
+        <button class="selectItem" onclick="insertThisInThere('れ','writeBox')">れ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ょ','writeBox')">ょ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('を','writeBox')">を</button>
+        <button class="selectItem" onclick="insertThisInThere('ろ','writeBox')">ろ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('だ','writeBox')">だ</button>
+        <button class="selectItem" onclick="insertThisInThere('ざ','writeBox')">ざ</button>
+        <button class="selectItem" onclick="insertThisInThere('が','writeBox')">が</button>
+        <button class="selectItem" onclick="insertThisInThere('ぁ','writeBox')">ぁ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ぢ','writeBox')">ぢ</button>
+        <button class="selectItem" onclick="insertThisInThere('じ','writeBox')">じ</button>
+        <button class="selectItem" onclick="insertThisInThere('ぎ','writeBox')">ぎ</button>
+        <button class="selectItem" onclick="insertThisInThere('ぃ','writeBox')">ぃ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('づ','writeBox')">づ</button>
+        <button class="selectItem" onclick="insertThisInThere('ず','writeBox')">ず</button>
+        <button class="selectItem" onclick="insertThisInThere('ぐ','writeBox')">ぐ</button>
+        <button class="selectItem" onclick="insertThisInThere('ぅ','writeBox')">ぅ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('で','writeBox')">で</button>
+        <button class="selectItem" onclick="insertThisInThere('ぜ','writeBox')">ぜ</button>
+        <button class="selectItem" onclick="insertThisInThere('げ','writeBox')">げ</button>
+        <button class="selectItem" onclick="insertThisInThere('ぇ','writeBox')">ぇ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ど','writeBox')">ど</button>
+        <button class="selectItem" onclick="insertThisInThere('ぞ','writeBox')">ぞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ご','writeBox')">ご</button>
+        <button class="selectItem" onclick="insertThisInThere('ぉ','writeBox')">ぉ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('々','writeBox')">々</button>
+        <button class="selectItem" onclick="insertThisInThere('っ','writeBox')">っ</button>
+        <button class="selectItem" onclick="insertThisInThere('ぱ','writeBox')">ぱ</button>
+        <button class="selectItem" onclick="insertThisInThere('ば','writeBox')">ば</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('゛','writeBox')">゛</button>
+        <button class="selectItem" onclick="insertThisInThere('ー','writeBox')">ー</button>
+        <button class="selectItem" onclick="insertThisInThere('ぴ','writeBox')">ぴ</button>
+        <button class="selectItem" onclick="insertThisInThere('び','writeBox')">び</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('゜','writeBox')">゜</button>
+        <button class="selectItem" onclick="insertThisInThere('ゝ','writeBox')">ゝ</button>
+        <button class="selectItem" onclick="insertThisInThere('ぷ','writeBox')">ぷ</button>
+        <button class="selectItem" onclick="insertThisInThere('ぶ','writeBox')">ぶ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ﾞ','writeBox')">ﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ゞ','writeBox')">ゞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ぺ','writeBox')">ぺ</button>
+        <button class="selectItem" onclick="insertThisInThere('べ','writeBox')">べ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ﾟ','writeBox')">ﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ぽ','writeBox')">ぽ</button>
+        <button class="selectItem" onclick="insertThisInThere('ぼ','writeBox')">ぼ</button>
+      </div>
+      <!-- Page 13 -->
+      <div id="page13" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('タ','writeBox')">タ</button>
+        <button class="selectItem" onclick="insertThisInThere('サ','writeBox')">サ</button>
+        <button class="selectItem" onclick="insertThisInThere('カ','writeBox')">カ</button>
+        <button class="selectItem" onclick="insertThisInThere('ア','writeBox')">ア</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('チ','writeBox')">チ</button>
+        <button class="selectItem" onclick="insertThisInThere('シ','writeBox')">シ</button>
+        <button class="selectItem" onclick="insertThisInThere('キ','writeBox')">キ</button>
+        <button class="selectItem" onclick="insertThisInThere('イ','writeBox')">イ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ツ','writeBox')">ツ</button>
+        <button class="selectItem" onclick="insertThisInThere('ス','writeBox')">ス</button>
+        <button class="selectItem" onclick="insertThisInThere('ク','writeBox')">ク</button>
+        <button class="selectItem" onclick="insertThisInThere('ウ','writeBox')">ウ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('テ','writeBox')">テ</button>
+        <button class="selectItem" onclick="insertThisInThere('セ','writeBox')">セ</button>
+        <button class="selectItem" onclick="insertThisInThere('ケ','writeBox')">ケ</button>
+        <button class="selectItem" onclick="insertThisInThere('エ','writeBox')">エ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ト','writeBox')">ト</button>
+        <button class="selectItem" onclick="insertThisInThere('ソ','writeBox')">ソ</button>
+        <button class="selectItem" onclick="insertThisInThere('コ','writeBox')">コ</button>
+        <button class="selectItem" onclick="insertThisInThere('オ','writeBox')">オ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ヤ','writeBox')">ヤ</button>
+        <button class="selectItem" onclick="insertThisInThere('マ','writeBox')">マ</button>
+        <button class="selectItem" onclick="insertThisInThere('ハ','writeBox')">ハ</button>
+        <button class="selectItem" onclick="insertThisInThere('ナ','writeBox')">ナ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ミ','writeBox')">ミ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヒ','writeBox')">ヒ</button>
+        <button class="selectItem" onclick="insertThisInThere('ニ','writeBox')">ニ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ユ','writeBox')">ユ</button>
+        <button class="selectItem" onclick="insertThisInThere('ム','writeBox')">ム</button>
+        <button class="selectItem" onclick="insertThisInThere('フ','writeBox')">フ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヌ','writeBox')">ヌ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('メ','writeBox')">メ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヘ','writeBox')">ヘ</button>
+        <button class="selectItem" onclick="insertThisInThere('ネ','writeBox')">ネ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ヨ','writeBox')">ヨ</button>
+        <button class="selectItem" onclick="insertThisInThere('モ','writeBox')">モ</button>
+        <button class="selectItem" onclick="insertThisInThere('ホ','writeBox')">ホ</button>
+        <button class="selectItem" onclick="insertThisInThere('ノ','writeBox')">ノ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ャ','writeBox')">ャ</button>
+        <button class="selectItem" onclick="insertThisInThere('ン','writeBox')">ン</button>
+        <button class="selectItem" onclick="insertThisInThere('ワ','writeBox')">ワ</button>
+        <button class="selectItem" onclick="insertThisInThere('ラ','writeBox')">ラ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ヵ','writeBox')">ヵ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヰ','writeBox')">ヰ</button>
+        <button class="selectItem" onclick="insertThisInThere('リ','writeBox')">リ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ュ','writeBox')">ュ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヴ','writeBox')">ヴ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ル','writeBox')">ル</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ヶ','writeBox')">ヶ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヱ','writeBox')">ヱ</button>
+        <button class="selectItem" onclick="insertThisInThere('レ','writeBox')">レ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ョ','writeBox')">ョ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ヲ','writeBox')">ヲ</button>
+        <button class="selectItem" onclick="insertThisInThere('ロ','writeBox')">ロ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ダ','writeBox')">ダ</button>
+        <button class="selectItem" onclick="insertThisInThere('ザ','writeBox')">ザ</button>
+        <button class="selectItem" onclick="insertThisInThere('ガ','writeBox')">ガ</button>
+        <button class="selectItem" onclick="insertThisInThere('ァ','writeBox')">ァ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('チ','writeBox')">チ</button>
+        <button class="selectItem" onclick="insertThisInThere('ジ','writeBox')">ジ</button>
+        <button class="selectItem" onclick="insertThisInThere('ギ','writeBox')">ギ</button>
+        <button class="selectItem" onclick="insertThisInThere('ィ','writeBox')">ィ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ツ','writeBox')">ツ</button>
+        <button class="selectItem" onclick="insertThisInThere('ズ','writeBox')">ズ</button>
+        <button class="selectItem" onclick="insertThisInThere('グ','writeBox')">グ</button>
+        <button class="selectItem" onclick="insertThisInThere('ゥ','writeBox')">ゥ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('テ','writeBox')">テ</button>
+        <button class="selectItem" onclick="insertThisInThere('ゼ','writeBox')">ゼ</button>
+        <button class="selectItem" onclick="insertThisInThere('ゲ','writeBox')">ゲ</button>
+        <button class="selectItem" onclick="insertThisInThere('ェ','writeBox')">ェ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ト','writeBox')">ト</button>
+        <button class="selectItem" onclick="insertThisInThere('ゾ','writeBox')">ゾ</button>
+        <button class="selectItem" onclick="insertThisInThere('ゴ','writeBox')">ゴ</button>
+        <button class="selectItem" onclick="insertThisInThere('ォ','writeBox')">ォ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('々','writeBox')">々</button>
+        <button class="selectItem" onclick="insertThisInThere('ッ','writeBox')">ッ</button>
+        <button class="selectItem" onclick="insertThisInThere('パ','writeBox')">パ</button>
+        <button class="selectItem" onclick="insertThisInThere('バ','writeBox')">バ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('゛','writeBox')">゛</button>
+        <button class="selectItem" onclick="insertThisInThere('ー','writeBox')">ー</button>
+        <button class="selectItem" onclick="insertThisInThere('ピ','writeBox')">ピ</button>
+        <button class="selectItem" onclick="insertThisInThere('ビ','writeBox')">ビ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('゜','writeBox')">゜</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ','writeBox')">ヽ</button>
+        <button class="selectItem" onclick="insertThisInThere('プ','writeBox')">プ</button>
+        <button class="selectItem" onclick="insertThisInThere('ブ','writeBox')">ブ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾞ','writeBox')">ﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヾ','writeBox')">ヾ</button>
+        <button class="selectItem" onclick="insertThisInThere('ペ','writeBox')">ペ</button>
+        <button class="selectItem" onclick="insertThisInThere('ベ','writeBox')">ベ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾟ','writeBox')">ﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ポ','writeBox')">ポ</button>
+        <button class="selectItem" onclick="insertThisInThere('ボ','writeBox')">ボ</button>
+      </div>
+      <!-- Page 14 -->
+      <div id="page14" class="selectionBox tabcontent">
+        <button class="selectItem" onclick="insertThisInThere('ﾀ','writeBox')">ﾀ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｻ','writeBox')">ｻ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｶ','writeBox')">ｶ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｱ','writeBox')">ｱ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ﾁ','writeBox')">ﾁ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｼ','writeBox')">ｼ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｷ','writeBox')">ｷ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｲ','writeBox')">ｲ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾂ','writeBox')">ﾂ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｽ','writeBox')">ｽ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｸ','writeBox')">ｸ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｳ','writeBox')">ｳ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾃ','writeBox')">ﾃ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｾ','writeBox')">ｾ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｹ','writeBox')">ｹ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｴ','writeBox')">ｴ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾄ','writeBox')">ﾄ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｿ','writeBox')">ｿ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｺ','writeBox')">ｺ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｵ','writeBox')">ｵ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾔ','writeBox')">ﾔ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾏ','writeBox')">ﾏ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾊ','writeBox')">ﾊ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾅ','writeBox')">ﾅ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾐ','writeBox')">ﾐ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾋ','writeBox')">ﾋ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾆ','writeBox')">ﾆ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾕ','writeBox')">ﾕ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾑ','writeBox')">ﾑ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾌ','writeBox')">ﾌ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾇ','writeBox')">ﾇ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾒ','writeBox')">ﾒ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾍ','writeBox')">ﾍ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾈ','writeBox')">ﾈ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾖ','writeBox')">ﾖ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾓ','writeBox')">ﾓ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾎ','writeBox')">ﾎ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾉ','writeBox')">ﾉ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ｬ','writeBox')">ｬ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾝ','writeBox')">ﾝ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾜ','writeBox')">ﾜ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾗ','writeBox')">ﾗ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ヵ','writeBox')">ヵ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヰ','writeBox')">ヰ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾘ','writeBox')">ﾘ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ｭ','writeBox')">ｭ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｳﾞ','writeBox')">ｳﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾙ','writeBox')">ﾙ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ヶ','writeBox')">ヶ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヱ','writeBox')">ヱ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾚ','writeBox')">ﾚ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ｮ','writeBox')">ｮ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ｦ','writeBox')">ｦ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾛ','writeBox')">ﾛ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾀﾞ','writeBox')">ﾀﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｻﾞ','writeBox')">ｻﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｶﾞ','writeBox')">ｶﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｧ','writeBox')">ｧ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾁ','writeBox')">ﾁ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｼﾞ','writeBox')">ｼﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｷﾞ','writeBox')">ｷﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｨ','writeBox')">ｨ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾂ','writeBox')">ﾂ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｽﾞ','writeBox')">ｽﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｸﾞ','writeBox')">ｸﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｩ','writeBox')">ｩ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾃ','writeBox')">ﾃ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｾﾞ','writeBox')">ｾﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｹﾞ','writeBox')">ｹﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｪ','writeBox')">ｪ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾄ','writeBox')">ﾄ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｿﾞ','writeBox')">ｿﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｺﾞ','writeBox')">ｺﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ｫ','writeBox')">ｫ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('々','writeBox')">々</button>
+        <button class="selectItem" onclick="insertThisInThere('ｯ','writeBox')">ｯ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾊﾟ','writeBox')">ﾊﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾊﾞ','writeBox')">ﾊﾞ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('゛','writeBox')">゛</button>
+        <button class="selectItem" onclick="insertThisInThere('ｰ','writeBox')">ｰ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾋﾟ','writeBox')">ﾋﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾋﾞ','writeBox')">ﾋﾞ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('゜','writeBox')">゜</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ','writeBox')">ヽ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾌﾟ','writeBox')">ﾌﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾌﾞ','writeBox')">ﾌﾞ</button>
+
+        <button class="selectItem" onclick="insertThisInThere('ﾞ','writeBox')">ﾞ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヾ','writeBox')">ヾ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾍﾟ','writeBox')">ﾍﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾍﾞ','writeBox')">ﾍﾞ</button>
+        
+        <button class="selectItem" onclick="insertThisInThere('ﾟ','writeBox')">ﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾎﾟ','writeBox')">ﾎﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾎﾞ','writeBox')">ﾎﾞ</button>
+      </div>
+      <!-- Page 15 -->
+      <div id="page15" class="selectionBoxWide tabcontent">
+        <button title="Meaning relaxed/mellow/chilling" class="selectItem">Mattari</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(´ー｀)ノ','writeBox')">ヽ(´ー｀)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('(´ー｀)','writeBox')">(´ー｀)</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(´ー`)ﾉ','writeBox')">ヽ(´ー`)ﾉ</button>
+        <button class="selectItem" onclick="insertThisInThere('(´ー`)','writeBox')">(´ー`)</button>
+        <button class="selectItem" onclick="insertThisInThere('(´ー`)y-~~','writeBox')">(´ー`)y-~~</button>
+        <button class="selectItem" onclick="insertThisInThere('(´ー｀)人','writeBox')">(´ー｀)人</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(´ー｀三´ー｀)ノ','writeBox')">ヽ(´ー｀三´ー｀)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button title="A play on the fact that ダウン (down) looks similar to ダウソ (dauso). Swapping ン for ソ for comedic effect was common on the early Japanese internet" class="selectItem">Dauso</button>
+        <button class="selectItem" onclick="insertThisInThere('(;´Д`)','writeBox')">(;´Д`)</button>
+        <button class="selectItem" onclick="insertThisInThere('(´Д`;)','writeBox')">(´Д`;)</button>
+        <button class="selectItem" onclick="insertThisInThere('Σ(;´Д`)','writeBox')">Σ(;´Д`)</button>
+        <button class="selectItem" onclick="insertThisInThere('(;´Д`)(´Д`;)','writeBox')">´Д`)(´Д`</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Ahaha</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(´∇｀)ノ','writeBox')">ヽ(´∇｀)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('(´∇｀)','writeBox')">(´∇｀)</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(´∇`)ノ','writeBox')">ヽ(´∇`)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('(´∇`)','writeBox')">(´∇`)</button>
+        <button class="selectItem" onclick="insertThisInThere('(´∇`)σ','writeBox')">(´∇`)σ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Gyaha</button>
+        <button class="selectItem" onclick="insertThisInThere('(^Д^)ｷﾞｬﾊ!','writeBox')">(^Д^)ｷﾞｬﾊ!</button>
+        <button class="selectItem" onclick="insertThisInThere('(^Д^)','writeBox')">(^Д^)</button>
+        <button class="selectItem" onclick="insertThisInThere('(^Д＾)','writeBox')">(^Д＾)</button>
+        <button class="selectItem" onclick="insertThisInThere('(＾Д^)','writeBox')">(＾Д^)</button>
+        <button class="selectItem" onclick="insertThisInThere('(^Д^;)','writeBox')">(^Д^;)</button>
+        <button class="selectItem" onclick="insertThisInThere('(;^Д^)','writeBox')">(;^Д^)</button>
+        <button class="selectItem" onclick="insertThisInThere('(TД^)','writeBox')">(TД^)</button>
+        <button class="selectItem" onclick="insertThisInThere('(^ДT)','writeBox')">(^ДT)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾉД^､)σ','writeBox')">(ﾉД^､)σ</button>
+        <button class="selectItem" onclick="insertThisInThere('(＾Д^)(^Д＾)','writeBox')">＾Д^)(^Д＾</button>
+        <button class="selectItem" onclick="insertThisInThere('(^Д＾)(＾Д^)','writeBox')">^Д＾)(＾Д^</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem">Ehh</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟ∇ﾟ)','writeBox')">(ﾟ∇ﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('(;ﾟ∇ﾟ)','writeBox')">(;ﾟ∇ﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟ∇ﾟ;)','writeBox')">(ﾟ∇ﾟ;)</button>
+        <button class="selectItem" onclick="insertThisInThere('Σ(;ﾟ∇ﾟ)','writeBox')">Σ(;ﾟ∇ﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Ehhh!?</button>
+        <button class="selectItem" onclick="insertThisInThere('(;ﾟДﾟ)','writeBox')">(;ﾟДﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟДﾟ;)','writeBox')">(ﾟДﾟ;)</button>
+        <button class="selectItem" onclick="insertThisInThere('Σ(;ﾟДﾟ)','writeBox')">Σ(;ﾟДﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ~ノ;ﾟДﾟ)','writeBox')">ヽ~ノ;ﾟДﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟДﾟ;三;ﾟДﾟ)','writeBox')">ﾟДﾟ;三;ﾟДﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('(;ﾟДﾟ)(ﾟДﾟ;)','writeBox')">;ﾟДﾟ)(ﾟДﾟ;</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button title="Devil/Evil" class="selectItem">Aku/Waru</button>
+        <button class="selectItem" onclick="insertThisInThere('(｀∇´)','writeBox')">(｀∇´)</button>
+        <button class="selectItem" onclick="insertThisInThere('Ψ(｀∇´)Ψ','writeBox')">Ψ(｀∇´)Ψ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(｀∇´)ノ','writeBox')">ヽ(｀∇´)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('(｀ー´)','writeBox')">(｀ー´)</button>
+        <button class="selectItem" onclick="insertThisInThere('(｀～´)','writeBox')">(｀～´)</button>
+        <button class="selectItem" onclick="insertThisInThere('(;`-´)','writeBox')">(;`-´)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Furious</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(`Д´)ノ','writeBox')">ヽ(`Д´)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('(`Д´)','writeBox')">(`Д´)</button>
+        <button class="selectItem" onclick="insertThisInThere('(`ДＴ)','writeBox')">(`ДＴ)</button>
+        <button class="selectItem" onclick="insertThisInThere('γ⌒ヽ','writeBox')">γ⌒ヽ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Penis</button>
+        <button class="selectItem" onclick="insertThisInThere('ｯ!(;`Д´)','writeBox')">ｯ!(;`Д´)</button>
+        <button class="selectItem" onclick="insertThisInThere('ｯ!?(;`Д´)','writeBox')">ｯ!?(;`Д´)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Grrr</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟ皿ﾟ#)','writeBox')">(ﾟ皿ﾟ#)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟ皿ﾟ)','writeBox')">(ﾟ皿ﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟ血ﾟ#)','writeBox')">(ﾟ血ﾟ#)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟ血ﾟ)','writeBox')">(ﾟ血ﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button title="Veins about to burst from pent-up anger" class="selectItem">Bikibiki</button>
+        <button class="selectItem" onclick="insertThisInThere('(╬⊙Д⊙)','writeBox')">(╬⊙Д⊙)</button>
+        <button class="selectItem" onclick="insertThisInThere('(╬๏言๏)','writeBox')">(╬๏言๏)</button>
+        <button class="selectItem" onclick="insertThisInThere('(╬⦿Д⦿)','writeBox')">(╬⦿Д⦿)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Crying</button>
+        <button class="selectItem" onclick="insertThisInThere('(ρ_;)','writeBox')">(ρ_;)</button>
+        <button class="selectItem" onclick="insertThisInThere('(TДT)','writeBox')">(TДT)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾉД`､)','writeBox')">(ﾉД`､)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem">Sniff</button>
+        <button class="selectItem" onclick="insertThisInThere('(´ーT)','writeBox')">(´ーT)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ノー｀)','writeBox')">(ノー｀)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem">Ah</button>
+        <button class="selectItem" onclick="insertThisInThere('(´Д`)','writeBox')">(´Д`)</button>
+        <button class="selectItem" onclick="insertThisInThere('(´-｀)','writeBox')">(´-｀)</button>
+        <button class="selectItem" onclick="insertThisInThere('(´－｀)','writeBox')">(´－｀)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Drool</button>
+        <button class="selectItem" onclick="insertThisInThere('(´￢｀)','writeBox')">(´￢｀)</button>
+        <button class="selectItem" onclick="insertThisInThere('(´￢`)','writeBox')">(´￢`)</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(ﾟρﾟ)ノ','writeBox')">ヽ(ﾟρﾟ)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Aa～n</button>
+        <button class="selectItem" onclick="insertThisInThere('(´Дﾟ)','writeBox')">(´Дﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('(´ーﾟ)','writeBox')">(´ーﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟД｀)','writeBox')">(ﾟД｀)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟー｀)','writeBox')">(ﾟー｀)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Tasty</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(´π｀)ノ','writeBox')">ヽ(´π｀)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('(´π｀)','writeBox')">(´π｀)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Haa?</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟДﾟ)ﾊｧ?','writeBox')">(ﾟДﾟ)ﾊｧ?</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟДﾟ)','writeBox')">(ﾟДﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟへﾟ)','writeBox')">(ﾟへﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾟへﾟ','writeBox')">ﾟへﾟ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Dehehe</button>
+        <button class="selectItem" onclick="insertThisInThere('ﾉ(´д`)','writeBox')">ﾉ(´д`)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Fushishi</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟーﾟ)','writeBox')">(ﾟーﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟｰﾟ)','writeBox')">(ﾟｰﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('ｰﾟ)','writeBox')">ｰﾟ)</button>
+        <button class="selectItem" onclick="insertThisInThere('(ﾟｰ','writeBox')">(ﾟｰ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem">Pukkusu</button>
+        <button class="selectItem" onclick="insertThisInThere('(*\'ｰ\')','writeBox')">(*'ｰ')</button>
+        <button class="selectItem" onclick="insertThisInThere('(\'ｰ\'*)','writeBox')">('ｰ'*)</button>
+        <button class="selectItem" onclick="insertThisInThere('(\'ｰ\')','writeBox')">('ｰ')</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button title="As in the '80s manga/OVA Ogami Matsugorou" class="selectItem">Ogami</button>
+        <button class="selectItem" onclick="insertThisInThere('(´人｀)','writeBox')">(´人｀)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Good job</button>
+        <button class="selectItem" onclick="insertThisInThere('ъ( ﾟｰ^)','writeBox')">ъ( ﾟｰ^)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button title="As in いすゞ (Isuzu; car company), presumably because it uses the same iteration mark" class="selectItem">Isuzu</button>
+        <button class="selectItem" onclick="insertThisInThere('(⌒∇⌒ゞ)','writeBox')">(⌒∇⌒ゞ)</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Buwa!</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(≧∇≦´ー｀)ノ','writeBox')">ヽ(≧∇≦´ー｀)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(´ー｀≧∇≦)ノ','writeBox')">ヽ(´ー｀≧∇≦)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Wara</button>
+        <button class="selectItem" onclick="insertThisInThere('(^^;ﾜﾗ','writeBox')">(^^;ﾜﾗ</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button title="As in the character from Street Fighter II" class="selectItem">Guile hair</button>
+        <button class="selectItem" onclick="insertThisInThere('＼　　/ / ／','writeBox')">＼　　/ / ／</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button title="The sound of zooming off at high speed" class="selectItem">Peeoow</button>
+        <button class="selectItem" onclick="insertThisInThere('ε≡三ヽ(´ー`)ﾉ','writeBox')">ε≡三ヽ(´ー`)ﾉ</button>
+        <button class="selectItem" onclick="insertThisInThere('ε≡Ξヽ( ^Д^)ノ','writeBox')">ε≡Ξヽ( ^Д^)ノ</button>
+        <button class="selectItem" onclick="insertThisInThere('ヽ(´Д`;)ノΞ≡3','writeBox')">ヽ(´Д`;)ノΞ≡3</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Ears</button>
+        <button class="selectItem" onclick="insertThisInThere('∧ ∧','writeBox')">∧ ∧</button>
+        <button class="selectItem" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem" onclick="insertThisInThere('(;´田｀)','writeBox')">(;´田｀)</button>
+      </div>
+      <!-- Page 16 -->
+      <div id="page16" class="selectionBoxWide tabcontent">
+        <button class="selectItem">Gikoneko</button>
+        <button title="The standard form of Gikoneko" class="selectItem multiLine" onclick="insertThisInThere('　　　 ∧ ∧\n～′￣(´ー`)＜text goes here\n　UU￣ U  U','writeBox')">　　　 ∧ ∧<br>～′￣(´ー`)<br>　UU￣ U  U</button>
+        <button title="An early, longer version of Gikoneko" class="selectItem multiLine" onclick="insertThisInThere('　　　　 ∧ ∧\n～′￣￣(´ー`)＜text goes here\n　UU￣￣ U  U','writeBox')">　　　 ∧ ∧<br>′￣￣(´ー`)<br>UU￣￣ U  U</button>
+        <button title="Simplified Gikoneko in a box" class="selectItem multiLine " onclick="insertThisInThere('  　∧ ∧\n ／(´ー`)ノ＜text goes here\n ￣￣￣￣|','writeBox')"> 　∧ ∧<br>／(´ー`)ノ<br>￣￣￣￣|</button>
+        <button title="Earlier, more elaborate Gikoneko in a box" class="selectItem multiLine" onclick="insertThisInThere(' ____ ∧ ∧\n|＼ /(´～`)＼＜text goes here\n|　|￣￣￣￣￣|\n|　|＝みかん＝|\n ＼|＿＿＿＿＿|','writeBox')">____ ∧ ∧<br>＼ /(´～`)＼<br>　|￣￣￣￣￣<br>　|＝みかん＝<br></button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button title="Pukkusu musume are mean girls who snicker to themselves while saying horrible things about other people; particularly virgins, nerds, and anime otaku" class="selectItem">PukkusuGirls</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('(\'ｰ\'*)ｸｽｸｽ...text goes here\n (  ﾉ)　　 (\'ｰ\'*)ﾌﾟｯ text goes here\n  ﾉ ヽ　　　(  ﾉ)\n  　　　　　 ﾉ ヽ\n  　(\'ｰ\'*)ﾊｽﾞｶｼｰ text goes here\n　   (  ﾉ)　\n　    ﾉ ヽ\n　　　　　    (\'ｰ\'*)ﾊﾞｶﾐﾀｲ text goes here\n　　　　　　　 (  ﾉ)\n　(\'ｰ\'*)ｸｽｸｽ    ﾉ ヽ\n   (  ﾉ)\n　　ﾉ ヽ　　　(\'ｰ\'*)ｻｲﾃｰ text goes here\n　　　　　　　 (  ﾉ)\n　　　　　　　　ﾉ ヽ','writeBox')">  ('ｰ'*)ｸｽｸｽ<br>   (  ﾉ)<br>    ﾉ ヽ</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('(\'ｰ\'*)hehe...[text goes here]\n (  ﾉ)　　 (\'ｰ\'*)pfft [text goes here]\n  ﾉ ヽ　　　(  ﾉ)\n  　　　　　 ﾉ ヽ\n  　(\'ｰ\'*)so embarrassing [text goes here]\n　   (  ﾉ)　\n　    ﾉ ヽ\n　　　　　    (\'ｰ\'*)so dumb [text goes here]\n　　　　　　　 (  ﾉ)\n　(\'ｰ\'*)hehe    ﾉ ヽ\n   (  ﾉ)\n　　ﾉ ヽ　　　(\'ｰ\'*)the worst [text goes here]\n　　　　　　　 (  ﾉ)\n　　　　　　　　ﾉ ヽ','writeBox')">  ('ｰ'*)hehe<br>   (  ﾉ)<br>    ﾉ ヽ</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　　(´Д`)\n((  (ヽ(  (*\'-\') ｱﾊ～ﾝ\n　　 >> >> ヽヽ','writeBox')">(´Д`)<br>(ヽ(  (*'-')<br> >> >> ヽヽ</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Pikachiu</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere(' ／￣￣￣￣￣￣￣￣￣￣￣＼\n｜text goes here          ｜\n｜                        ｜　  /|   /|\n｜                        ｜　 / |  / |\n｜                        ｜  /  ⌒    \n｜                         > /●_  ● \n ＼＿＿＿＿＿＿＿＿＿＿＿／ (〇 ～  〇 ','writeBox')">    / |  / |<br>   /  ⌒    <br>  /●_  ● <br> (〇 ～  〇 </button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button title="Robot/Mecha" class="selectItem">Robo</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('              ♪ \n   ↑↑↑  ／_㍻_＼  ↑↑↑ \n ⊂∥㊧∥⊃∈＠＠∋⊂∥㊨∥⊃ \n　 ∥㊧∥∧ ∥★∥ ∧∥㊨∥\n    ＼㊧㊧㊧㊧Ⅹ㊨㊨㊨㊨／\n       ￣￣|≪§≫|￣￣\n         |㈱≪§≫㈱|  \n           |≪§≫|\n          ＝＝★＝＝\n        ／㊧㊧♂㊨㊨＼\n       ∥㊧∥￣￣∥㊨∥\n       ∥㊧∥    ∥㊨∥\n       ∥㊧∥    ∥㊨∥\n       ∥㊧∥    ∥㊨∥\n   ≪|◎◎／ 　   ＼◎◎|≫\n㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼\n㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼㍼','writeBox')">     ♪<br>  ／_㍻_＼<br>  ∈＠＠∋<br>∧ ∥★∥ ∧</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Teiji Gundam</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　　　　　　　　 ｜\n　　　　　　　　 ｜\n　　　＼|ロ|／　 ｜\n　　 Ｅ´－｀ヨ　｜\n　 ~|⌒｡|[]|｡⌒|~｜\n　　ﾉ￣|ﾆＨﾆ|￣ヽ∥\n(ﾆ)/\/ q￣Ｕ￣p　 \n　/\/＼|ﾆ） （ﾆ|／\n /\/／＿l　　 l＿＼\n/\/ ~~           ~~\n~','writeBox')">  ＼|ロ|／<br> Ｅ´－｀ヨ</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button title="Full name: Ayashii Samurai" class="selectItem">Samurai</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　　　　　　　　　　　 /|　　　　　　　　 　　　　　　 /)\n　　　　　　　　　　　 ||　　　　　　　　　　　　　　 /\/\n　　　　　　　　　　　 ||　　　　　 __*_　　　　　　 /\/\n　　　　　　　　　　　 ||　　　　/-(____)　　　　　 /\/\n　　　　　　　　　　　 ||　　　 /\/\/\/´ｰ`||　　　　 /\/\n　　　　　　　　　　　 ||　　,____o%　,_　　　　　/\/\n　　　　　　　　　　　 ||　 /　||　 |||　;　　　 /\/\n　　　　　　　　　　　 ||　/____|....::./|　　　/\/\n　　　　　　　　　　　 || _/__/#|_ _,,_/--|　　/\/\n　　　　　　　　　　　 || /___/######## |/&quot;&quot;-(/</\n　　　　　　　　　　　 ||_/__/ \'#######　&quot;&quot;^(/</\n　　　　　　　　　　　 ||/ /　 ,)))=:=(,　　/\/.\n　　　　　　　　　　　|,--|　 /Q...... /.　(/\n　　　　　　　　　　　/||　　 .Q....../..|\n　　　　　　　　　　　 ||　　/.Q ..../...|\n　　　　　　　　　　　　~　 /......./.....|\n　　　　　　　　　　　　　　/...../　|.....|\n　　　　　　　　　　　　　　/_.._./　 |..._|\n　　　　　　　　　　　　　　 (\` )　　　(\` )\n　　　　　　　　　　　　　　 | /　　　　| |\n　　　　　　　　　　　　　　 \'(　　　　　)\'\n　　　　　　　　　　　　　　/+|　　　　　|+|\n　　　　　　　　　　　　　　|,/　　　　　|,/ 　','writeBox')">　　 __*<br>　/-(____)<br> ////´ｰ`||</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+        
+        <button class="selectItem">Zantei-kun</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('  ρ\n(o o)\nﾉ|||し','writeBox')">     ρ<br>   (o o)<br>   ﾉ|||し</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('  ρ\n(;o o)\nﾉ|||し','writeBox')">     ρ<br>   (;o o)<br>   ﾉ|||し</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('  ρ\n(o o)旦~\nﾉ|||Ｕ','writeBox')">    ρ<br>  (o o)旦~<br>  ﾉ|||Ｕ</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem">Vehicles</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('               _\n              /\/|\n             /\/ | ｳｨｰﾝ\n            /\/  |\n      ___  /\/   |\n     Дロ|Δ_   ∧\n    |========|    ←put something here\n   \(◎◎◎◎◎\)','writeBox')">   ___  //   <br>  Дロ|Δ_   <br> |========|<br>(◎◎◎◎◎)</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　　　　　　　＿＿＿＿_\n　　　　　　／_　　　＼＼_\n　　　　　／／/￣￣￣￣へ ＼\n　　　　 / / /　　　　 ＼ﾉﾉﾉ\n　　　__/ / /　　　　　 &quot;&quot;&quot;\n　　 / / / / ￣|\n ___/_/ / /´ｰ`|\n|__σ＼/ /|____|\n \(◎◎◎◎\)=\)\)=)\n￣~~~~~~~~￣ ￣￣','writeBox')">　 __/ / /<br>  / / / / ￣|<br>_/_/ / /´ｰ`|<br>σ＼/ /|____|<br>◎◎◎)=))=)<br></button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('                  _\n                 ◎＼\n                /X/X∥\n               /X/X/∥\n              /X/X/ ∥\n             /X/X/  ∥\n            /X/X/   ∥\n           /X/X/    ∥\n          /X/X/     ∥\n         /X/X/      ∥\n      __/X/X/       ∥\n     / /X/X/ ￣|    ∥\n ___/_/X/X/´ｰ`|    ∥\n|__σ＼/X/|____|    ●\n (◎◎◎◎)=))=)\n  ~~~~~~~~￣ ￣','writeBox')">X/X/      ∥<br>/X/ ￣|   ∥<br>X/´ｰ`|   ∥<br>/|____|   ●<br> )=))=)</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere(' (Д｀)\n┯〃　　)ー\n┃　 ノω　　＝３\n◎━━━━◎　＝３','writeBox')"> (Д｀)<br>┯〃　　)ー<br>┃　 ノω<br>◎━━━━◎</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+
+        <button class="selectItem">Misc.</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('     　　      γ⌒ヽ\n               (  人 )\n               │ ll│\n               │ ll│\n               │ ll│\n               │ ll│\n               │ ll│\n          (*\'-\'ﾉ  ll│\n            (ヽ  ﾉﾉ ﾉ\n  　　　　　ノ　ωヽ','writeBox')">   γ⌒ヽ<br>   (  人 )<br>   │ ll│<br>   │ ll│</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('(;´Д`)\n　( ヽη⌒ヽ\n　　ﾉωﾉ','writeBox')">(;´Д`)<br>　( ヽη⌒ヽ<br>　　ﾉωﾉ</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('((┌――――――――┐┌――――――――┐\n　└――――――― |｜｜| ―――――――┘))\n　　　　　　　　　 |｜｜|\n　　　　　　　　へ／⌒⌒＼へ　　　　  ／￣￣￣￣￣￣￣￣￣￣￣＼ \n　　　　　　　／＼　人人　／＼　　 　｜　　　　　　　　　　　　｜ \n　　　　　　（＼ζ(￣－￣)ζ／ ）　 ＜　Let\'s just relax, okay?｜ \n　　　　 っ　 )/∫　 ∞ 　∫)／　－　｜　　　　　　　　　　　　｜ \n　　　　￣＼＼／／( ⌒⌒ )＼＼／／￣　＼＿＿＿＿＿＿＿＿＿＿＿／\n　　　　　　　　　 )    (\n　　　　　　　　 ／￣￣￣＼\n　　　　　　　 ／ ∫　　∫ ＼\n　　　　　　　～∫～∫∫～∫～\n　　　　　　　　～　～～　～\n　　　　　　　　　 ∥　∥\n　　　　　　　　　 ￥　￥\n　　　　　　　　 ∈Μ　Μ∋','writeBox')">へ／⌒⌒＼へ<br>＼　人人　／<br>ζ(￣－￣)ζ<br>∫　 ∞ 　∫<br>／( ⌒⌒ )＼</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+        <!-- <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button>
+        <button class="selectItem multiLine" onclick="insertThisInThere('　','writeBox')">　</button> -->
+      </div>
+    </div>
+    <script>
+      var currentPage = document.getElementById("pager").getElementsByClassName("active")[0];
+      console.log(currentPage);
+    </script>
+    <form id="writeContainer">
+      <textarea id="writeBox"></textarea>
+    </form>
+  </div>
+</body>
+</html>

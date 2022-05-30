@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mattari AA</title>
+  <link href="./css/main.css" rel="stylesheet" type="text/css">
+  <link href="./css/honten.css" rel="alternate stylesheet" type="text/css" title="Honten">
+  <link href="./css/nazo.css" rel="alternate stylesheet" type="text/css" title="Nazo">
+  <link href="./css/remix.css" rel="alternate stylesheet" type="text/css" title="Remix">
+  <link href="./css/shiba.css" rel="alternate stylesheet" type="text/css" title="Shiba">
+  <script src="./script/styleswitch.js"></script>
+  <script src="./script/fontsize.js"></script>
+  <script src="./script/main.js"></script>
+  <style>
+    body {
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div id="innerHeader">
+      <div id="topControls">
+        <form id="fontSizeform">
+          <span>Font size:</span>
+          <label for="fontSmall">Small</label><input type="radio" name="fontChanger" id="fontSmall" onclick="smallFont()">
+          <label for="fontBig">Large</label><input type="radio" name="fontChanger" id="fontBig" onclick="bigFont()">
+        </form>
+        <form id="switchform">
+          <label for="switchcontrol">Style:</label>
+          <select name="switchcontrol" id="switchcontrol" size="1" onchange="chooseStyle(this.options[this.selectedIndex].value, 365)">
+            <option value="none" selected="selected">Main (004040)</option>
+            <option value="Honten">Honten (303c6d)</option>
+            <option value="Nazo">Nazo (000000)</option>
+            <option value="Remix">Remix (eeeeee)</option>
+            <option value="Shiba">Shiba (007f7f)</option>
+          </select>
+        </form>
+      </div>
+      <div id="title">
+        <h1>Mattari AA <span class="aa">ヽ(´ー｀)ノ</span></h1>
+        <nav class="links"><a href="./index.html">AA editor</a></nav>
+      </div>
+    </div>
+  </header>
+  <main>
+    <dl>
+      <dt>2022/05/30</dt>
+      <dd>
+        <ul>
+          <li>It's released!</li>
+          <li>Corrected "Mattari" mispelling on changelog page</li>
+          <li>Corrected Remix style's button hover color</li>
+        </ul>
+      </dd>
+      <dt>2022/05/08</dt>
+      <dd>
+        <ul>
+          <li>Work on the site began.</li>
+        </ul>
+      </dd>
+    </dl>
+  </main>
+</body>
+</html>
