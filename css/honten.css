@@ -1,0 +1,19 @@
+:root {
+  --bg-main: #263057;
+  --fg-main: #ffffff;
+  --fg-alt: #b5c4ff;
+  --link: #eeffee;
+  --link-v: #dddddd;
+  --link-a: #ff0000;
+  --bg-box: #303c6d;
+  --bg-box-transparent: #303c6d80;
+  --border-dark: #1b2141;
+  --border-light: #4b5b9b;
+  --border-btn-dark: #1f2749;
+  --border-btn-light: #7384ca;
+  --bg-img: url("../img/bg_dark.png");
+  --bg-img-write: url("../img/bg_honten.png");
+  --bg-img-write-small: url("../img/bg_honten_small.png");
+  --bg-button: #394780;
+  --outline: #9bafff;
+}

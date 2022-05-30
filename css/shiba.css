@@ -1,0 +1,19 @@
+:root {
+  --bg-main: #004040;
+  --fg-main: #ffffff;
+  --fg-alt: #ffff00;
+  --link: #eeffee;
+  --link-v: #dddddd;
+  --link-a: #ff0000;
+  --bg-box: #007f7f;
+  --bg-box-transparent: #00a0a080;
+  --border-dark: #003030;
+  --border-light: #006060;
+  --border-btn-dark: #004040;
+  --border-btn-light: #00a0a0;
+  --bg-img: url("../img/bg_dark.png");
+  --bg-img-write: url("../img/bg_shiba.png");
+  --bg-img-write-small: url("../img/bg_shiba_small.png");
+  --bg-button: #006060;
+  --outline: #00dddd;
+}

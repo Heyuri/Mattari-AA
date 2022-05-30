@@ -1,0 +1,36 @@
+:root {
+  --bg-main: #101010;
+  --fg-main: #ff0000;
+  --fg-alt: #ff0000;
+  --link: #ff0000;
+  --link-v: #ff0000;
+  --link-a: #ff0000;
+  --bg-box: #000000;
+  --bg-box-transparent: #00000080;
+  --border-dark: #303030;
+  --border-light: #404040;
+  --border-btn-dark: #202020;
+  --border-btn-light: #606060;
+  --bg-img: url("../img/bg_dark.png");
+  --bg-img-write: url("../img/bg_nazo.png");
+  --bg-img-write-small: url("../img/bg_nazo_small.png");
+  --bg-button: #080808;
+  --outline: #ff0000;
+}
+
+.tablinks:hover,
+.selectionBox .selectItem:hover {
+  background-color: var(--border-dark);
+  color: var(--fg-main);
+}
+
+.tablinks:focus,
+.selectionBox .selectItem:focus {
+  background-color: var(--bg-box);
+  color: var(--fg-main);
+}
+
+.tablinks.active {
+  background-color: var(--fg-main);
+  color: var(--bg-box);
+}

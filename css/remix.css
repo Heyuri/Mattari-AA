@@ -1,0 +1,29 @@
+:root {
+  --bg-main: #e0e0e0;
+  --fg-main: #000000;
+  --fg-alt: #4f4ff9;
+  --link: #0000ff;
+  --link-v: #663399;
+  --link-a: #ff0000;
+  --bg-box: #eeeeee;
+  --bg-box-transparent: #ffffff80;
+  --border-dark: #aaaaaa;
+  --border-light: #ffffff;
+  --border-btn-dark: #999999;
+  --border-btn-light: #ffffff;
+  --bg-img: url("../img/bg_light.png");
+  --bg-img-write: url("../img/bg_remix.png");
+  --bg-img-write-small: url("../img/bg_remix_small.png");
+  --bg-button: #dddddd;
+  --outline: #6666ff;
+}
+
+.tablinks:hover,
+.selectionBox .selectItem:hover {
+  background-color: #eeeeee;
+}
+
+.tablinks.active {
+  background-color: #4f4ff9;
+  color: var(--bg-box);
+}
